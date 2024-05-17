@@ -29,11 +29,12 @@ def add_equipment():
             'model': request.form['model'],
             'quantity': int(request.form['quantity']),
             'unit': request.form['unit'],
-            'value': float(request.form['value'])
+            'value': float(request.form['value']),
+            'research_link': request.form['research_link']
         }
         cursor = db.cursor()
-        cursor.execute("INSERT INTO equipment (name, description, model, quantity, unit, value) VALUES (%s, %s, %s, %s, %s, %s)", 
-                        (equipment['name'], equipment['description'], equipment['model'], equipment['quantity'], equipment['unit'], equipment['value']))
+        cursor.execute("INSERT INTO equipment (name, description, model, quantity, unit, value, research_link) VALUES (%s, %s, %s, %s, %s, %s, %s)", 
+                        (equipment['name'], equipment['description'], equipment['model'], equipment['quantity'], equipment['unit'], equipment['value'], equipment['research_link']))
         db.commit()
         return redirect(url_for('index'))
     return render_template('add_equipment.html')
@@ -48,10 +49,11 @@ def edit_equipment(id):
             'model': request.form['model'],
             'quantity': int(request.form['quantity']),
             'unit': request.form['unit'],
-            'value': float(request.form['value'])
+            'value': float(request.form['value']),
+            'research_link': request.form['research_link']
         }
-        cursor.execute("UPDATE equipment SET name = %s, description = %s, model = %s, quantity = %s, unit = %s, value = %s WHERE id = %s",
-                        (equipment['name'], equipment['description'], equipment['model'], equipment['quantity'], equipment['unit'], equipment['value'], id))
+        cursor.execute("UPDATE equipment SET name = %s, description = %s, model = %s, quantity = %s, unit = %s, value = %s, research_link = %s WHERE id = %s",
+                        (equipment['name'], equipment['description'], equipment['model'], equipment['quantity'], equipment['unit'], equipment['value'], equipment['research_link'], id))
         db.commit()
         return redirect(url_for('index'))
     cursor.execute("SELECT * FROM equipment WHERE id = %s", (id,))
@@ -66,4 +68,4 @@ def delete_equipment(id):
     return redirect(url_for('index'))
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(port=5001, debug=True)
