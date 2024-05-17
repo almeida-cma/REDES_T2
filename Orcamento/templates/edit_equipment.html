@@ -6,7 +6,7 @@
 </head>
 <body>
     <h1>Edit Equipment</h1>
-	<form method="POST">
+    <form method="POST">
         <label for="name">Name:</label>
         <input type="text" name="name" value="{{ equipment.name }}" required>
         <br>
@@ -25,9 +25,11 @@
         <label for="value">Value:</label>
         <input type="number" step="0.01" name="value" value="{{ equipment.value }}" required>
         <br>
+        <label for="research_link">Research Link:</label>
+        <input type="url" name="research_link" value="{{ equipment.research_link }}">
+        <br>
         <button type="submit">Save</button>
     </form>
     <a href="{{ url_for('index') }}">Back</a>
 </body>
 </html>
-
