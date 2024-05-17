@@ -12,7 +12,8 @@ CREATE TABLE IF NOT EXISTS equipment (
     model VARCHAR(255) NOT NULL,
     quantity INT NOT NULL,
     unit VARCHAR(50) NOT NULL,
-    value DECIMAL(10, 2) NOT NULL
+    value DECIMAL(10, 2) NOT NULL,
+    research_link VARCHAR(255) NULL
 );
 
 
